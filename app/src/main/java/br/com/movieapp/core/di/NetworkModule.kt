@@ -3,9 +3,15 @@ package br.com.movieapp.core.di
 import br.com.movieapp.BuildConfig
 import br.com.movieapp.core.data.remote.MovieService
 import br.com.movieapp.core.data.remote.ParamsInterceptor
+import br.com.movieapp.movie_popular_feature.data.repository.MoviePopularRepositoryImpl
+import br.com.movieapp.movie_popular_feature.data.source.MoviePopularRemoteDataSourceImpl
+import br.com.movieapp.movie_popular_feature.domain.repository.MoviePopularRepository
+import br.com.movieapp.movie_popular_feature.domain.source.MoviePopularRemoteDataSource
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -18,11 +24,6 @@ import java.util.concurrent.TimeUnit
 object NetworkModule {
 
     private const val TIMEOUT_SECOND = 15L
-
-    @Provides
-    fun provideParamsInterceptor(): ParamsInterceptor {
-        return ParamsInterceptor()
-    }
 
     @Provides
     fun provideLoggingInterceptor(): HttpLoggingInterceptor {

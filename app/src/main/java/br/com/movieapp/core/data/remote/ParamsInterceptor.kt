@@ -4,8 +4,9 @@ import br.com.movieapp.BuildConfig
 import br.com.movieapp.core.util.Constants
 import okhttp3.Interceptor
 import okhttp3.Response
+import javax.inject.Inject
 
-class ParamsInterceptor: Interceptor {
+class ParamsInterceptor @Inject constructor(): Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
         val url = request.url.newBuilder()
