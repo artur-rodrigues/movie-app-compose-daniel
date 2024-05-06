@@ -1,12 +1,14 @@
 package br.com.movieapp.core.presentation.navigation
 
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -15,7 +17,7 @@ import br.com.movieapp.ui.theme.black
 import br.com.movieapp.ui.theme.yellow
 
 @Composable
-fun BottomNavigationBar(
+fun CustomBottomNavigationBar(
     navController: NavController,
 ) {
     val items = listOf(
@@ -24,36 +26,22 @@ fun BottomNavigationBar(
         BottomNavItem.MovieFavorite
     )
 
-    BottomNavigation(
-        contentColor = yellow,
-        backgroundColor = black
+    NavigationBar(
+        containerColor = black
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
 
+
         items.forEach { destination ->
             BottomNavigationBarItem(currentRoute, destination, navController)
         }
-        /*items.forEach { destination ->
-            BottomNavigationItem(
-                selected = currentRoute == destination.route, 
-                onClick = { 
-                    navController.navigate(destination.route)
-                }, 
-                icon = { 
-                    Icon(imageVector = destination.icon, contentDescription = null)
-                },
-                label = {
-                    Text(text = destination.title)
-                }
-            )
-        }*/
     }
 }
 
 @Composable
 fun RowScope.BottomNavigationBarItem(currentRoute: String?, destination: BottomNavItem, navController: NavController) {
-    BottomNavigationItem(
+    NavigationBarItem(
         selected = currentRoute == destination.route,
         onClick = {
             navController.navigate(destination.route) {
@@ -65,12 +53,19 @@ fun RowScope.BottomNavigationBarItem(currentRoute: String?, destination: BottomN
         },
         label = {
             Text(text = destination.title)
-        }
+        },
+        colors = NavigationBarItemDefaults.colors(
+            selectedIconColor = yellow,
+            selectedTextColor = yellow,
+            indicatorColor = Color.Transparent,
+            unselectedIconColor = yellow.copy(alpha = 0.5f),
+            unselectedTextColor = yellow.copy(alpha = 0.5f)
+        )
     )
 }
 
 @Preview
 @Composable
 private fun BottomNavigationBarPreview() {
-    BottomNavigationBar(navController = rememberNavController())
+    CustomBottomNavigationBar(navController = rememberNavController())
 }

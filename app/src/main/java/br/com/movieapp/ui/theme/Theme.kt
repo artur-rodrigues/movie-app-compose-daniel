@@ -1,19 +1,19 @@
 package br.com.movieapp.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 
-private val DarkColorPalette = darkColors(
+private val DarkColorPalette = darkColorScheme(
     primary = BlackPrimary,
-    primaryVariant = BlackSecondary,
+    secondary = BlackSecondary,
 )
 
-private val LightColorPalette = lightColors(
+private val LightColorPalette = lightColorScheme(
     primary = YellowSecondary,
-    primaryVariant = BlackSecondary,
+    secondary = BlackSecondary,
 
     /* Other default colors to override
     background = Color.White,
@@ -34,9 +34,8 @@ fun MovieAppTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composab
     }
 
     MaterialTheme(
-        colors = colors,
+        colorScheme = colors,
         typography = Typography,
-        shapes = Shapes,
         content = content
     )
 }
