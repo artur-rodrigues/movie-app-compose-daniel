@@ -31,8 +31,6 @@ fun CustomBottomNavigationBar(
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
-
-
         items.forEach { destination ->
             BottomNavigationBarItem(currentRoute, destination, navController)
         }

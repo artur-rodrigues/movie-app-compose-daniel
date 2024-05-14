@@ -22,6 +22,6 @@ sealed class BottomNavItem(val title: String, val icon: ImageVector, val route: 
     object MovieFavorite: BottomNavItem(
         title = "Favoritos",
         icon = Icons.Default.Favorite,
-        route = "movie_search_screen"
+        route = "movie_favorite_screen"
     )
 }
