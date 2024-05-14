@@ -12,7 +12,7 @@ import br.com.movieapp.core.presentation.navigation.NavigationGraph
 fun MainScreen(navHostController: NavHostController) {
     Scaffold(
         content = {
-            NavigationGraph(navController = navHostController)
+            NavigationGraph(navController = navHostController, it)
         },
         bottomBar = {
             CustomBottomNavigationBar(navController = navHostController)
