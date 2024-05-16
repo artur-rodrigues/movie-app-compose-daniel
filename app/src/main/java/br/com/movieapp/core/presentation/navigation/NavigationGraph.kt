@@ -13,6 +13,8 @@ import androidx.navigation.navArgument
 import br.com.movieapp.core.util.Constants
 import br.com.movieapp.movie_detail_feature.presentation.MovieDetailScreen
 import br.com.movieapp.movie_detail_feature.presentation.MovieDetailViewModel
+import br.com.movieapp.movie_favorite_feature.presentation.MovieFavoriteScreen
+import br.com.movieapp.movie_favorite_feature.presentation.MovieFavoriteViewModel
 import br.com.movieapp.movie_popular_feature.presentation.MoviePopularScreen
 import br.com.movieapp.movie_popular_feature.presentation.MoviePopularViewModel
 import br.com.movieapp.movie_search_feature.presentation.MovieSearchScreen
@@ -26,9 +28,10 @@ fun NavigationGraph(navController: NavHostController, paddingValues: PaddingValu
         modifier = Modifier.padding(paddingValues)
     ){
         composable(BottomNavItem.MoviePopular.route) {
-            val viewModel = hiltViewModel<MoviePopularViewModel>()
-            MoviePopularScreen(uiState = viewModel.uiState) {
-                navController.navigate(BottomNavItem.MovieDetail.passMovieId(it))
+            hiltViewModel<MoviePopularViewModel>().run {
+                MoviePopularScreen(uiState) {
+                    navController.navigate(BottomNavItem.MovieDetail.passMovieId(it))
+                }
             }
         }
 
@@ -63,7 +66,11 @@ fun NavigationGraph(navController: NavHostController, paddingValues: PaddingValu
         }
 
         composable(BottomNavItem.MovieFavorite.route) {
-
+            hiltViewModel<MovieFavoriteViewModel>().run {
+                MovieFavoriteScreen(uiState) {
+                    navController.navigate(BottomNavItem.MovieDetail.passMovieId(it))
+                }
+            }
         }
     }
 }
