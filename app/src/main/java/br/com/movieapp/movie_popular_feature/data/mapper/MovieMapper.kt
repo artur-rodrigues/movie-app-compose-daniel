@@ -10,7 +10,7 @@ fun List<MovieResult>.toMovie() = map {
             id = id,
             title = title,
             voteAverage = voteAverage,
-            imageUrl = posterPath.toPostUrl()
+            imageUrl = posterPath.toPostUrl().toString()
         )
     }
 }
