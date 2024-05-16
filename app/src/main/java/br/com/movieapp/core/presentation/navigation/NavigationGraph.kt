@@ -58,7 +58,9 @@ fun NavigationGraph(navController: NavHostController, paddingValues: PaddingValu
             hiltViewModel<MovieDetailViewModel>().run {
                 MovieDetailScreen(
                     entry.arguments?.getInt(Constants.MOVIE_DETAIL_ARGUMENT_KEY),
-                    uiState
+                    uiState,
+                    ::onAddFavorite,
+                    ::checkedFavorite
                 ) {
                     getMovieDetail(it)
                 }

@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.paging.compose.collectAsLazyPagingItems
 import br.com.movieapp.R
+import br.com.movieapp.core.domain.model.Movie
 import br.com.movieapp.movie_detail_feature.presentation.components.MovieDetailContent
 import br.com.movieapp.movie_detail_feature.presentation.state.MovieDetailsState
 import br.com.movieapp.ui.theme.black
@@ -22,13 +23,16 @@ import br.com.movieapp.ui.theme.white
 fun MovieDetailScreen(
     id: Int?,
     uiState: MovieDetailsState,
+    onAddFavorite: (movie: Movie) -> Unit,
+    checkedFavorite: (checkedFavorite: MovieDetailEvent.CheckFavorite) -> Unit,
     getMovieDetail: (MovieDetailEvent.GetMovieDetail) -> Unit
 ) {
     val pagingMoviesSimilar = uiState.result.collectAsLazyPagingItems()
-    
+
     LaunchedEffect(true) {
         id?.let {
             getMovieDetail(MovieDetailEvent.GetMovieDetail(it))
+            checkedFavorite(MovieDetailEvent.CheckFavorite(it))
         }
     }
 
@@ -50,8 +54,8 @@ fun MovieDetailScreen(
             isError = uiState.error,
             iconColor = uiState.iconColor,
             modifier = Modifier.padding(it)
-        ) {
-
+        ) { movie ->
+            onAddFavorite(movie)
         }
     }
 }

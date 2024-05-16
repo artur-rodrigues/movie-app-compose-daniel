@@ -1,5 +1,6 @@
 package br.com.movieapp.movie_favorite_feature.presentation
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -13,6 +14,7 @@ import br.com.movieapp.R
 import br.com.movieapp.movie_favorite_feature.presentation.components.MovieFavoriteContent
 import br.com.movieapp.movie_favorite_feature.presentation.state.MovieFavoriteState
 import br.com.movieapp.ui.theme.black
+import br.com.movieapp.ui.theme.white
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -22,11 +24,11 @@ fun MovieFavoriteScreen(
     navigateToDetailMovie: (Int) -> Unit
 ) {
     Scaffold(
-        modifier = modifier,
+        modifier = modifier.fillMaxSize(),
         topBar = {
             TopAppBar(
                 title = {
-                    Text(text = stringResource(id = R.string.favorite_movies))
+                    Text(text = stringResource(id = R.string.favorite_movies), color = white)
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = black)
             )
