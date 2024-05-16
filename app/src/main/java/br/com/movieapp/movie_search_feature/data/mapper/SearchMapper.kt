@@ -1,4 +1,4 @@
-package br.com.movieapp.search_movie_feature.data.mapper
+package br.com.movieapp.movie_search_feature.data.mapper
 
 import br.com.movieapp.core.data.remote.model.SearchResult
 import br.com.movieapp.core.domain.model.Movie
@@ -9,6 +9,6 @@ fun List<SearchResult>.toMovieSearch() = map {
         it.id,
         it.title,
         it.voteAverage,
-        it.posterPath.toPostUrl()
+        it.posterPath.toPostUrl().toString()
     )
 }

@@ -1,4 +1,4 @@
-package br.com.movieapp.search_movie_feature.domain.repository
+package br.com.movieapp.movie_search_feature.domain.repository
 
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData

@@ -1,4 +1,4 @@
-package br.com.movieapp.search_movie_feature.presentation.components
+package br.com.movieapp.movie_search_feature.presentation.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.paging.compose.LazyPagingItems
 import br.com.movieapp.core.domain.model.Movie
 import br.com.movieapp.core.presentation.components.commom.MovieGrid
-import br.com.movieapp.search_movie_feature.presentation.MoviesSearchEvent
+import br.com.movieapp.movie_search_feature.presentation.MoviesSearchEvent
 import br.com.movieapp.ui.theme.black
 
 @Composable

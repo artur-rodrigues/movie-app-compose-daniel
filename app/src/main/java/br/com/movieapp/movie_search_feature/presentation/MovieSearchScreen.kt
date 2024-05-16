@@ -1,4 +1,4 @@
-package br.com.movieapp.search_movie_feature.presentation
+package br.com.movieapp.movie_search_feature.presentation
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -11,8 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.paging.compose.collectAsLazyPagingItems
 import br.com.movieapp.R
-import br.com.movieapp.search_movie_feature.presentation.components.SearchContent
-import br.com.movieapp.search_movie_feature.presentation.state.MovieSearchState
+import br.com.movieapp.movie_search_feature.presentation.components.SearchContent
+import br.com.movieapp.movie_search_feature.presentation.state.MovieSearchState
 import br.com.movieapp.ui.theme.black
 import br.com.movieapp.ui.theme.white
 

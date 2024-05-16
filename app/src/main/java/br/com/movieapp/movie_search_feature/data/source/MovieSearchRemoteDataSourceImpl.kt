@@ -1,9 +1,9 @@
-package br.com.movieapp.search_movie_feature.data.source
+package br.com.movieapp.movie_search_feature.data.source
 
 import br.com.movieapp.core.data.remote.MovieService
 import br.com.movieapp.core.data.remote.response.SearchResponse
 import br.com.movieapp.core.paging.MovieSearchPagingSource
-import br.com.movieapp.search_movie_feature.domain.source.MovieSearchRemoteDataSource
+import br.com.movieapp.movie_search_feature.domain.source.MovieSearchRemoteDataSource
 import javax.inject.Inject
 
 class MovieSearchRemoteDataSourceImpl @Inject constructor(

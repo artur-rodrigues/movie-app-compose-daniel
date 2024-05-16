@@ -1,4 +1,4 @@
-package br.com.movieapp.search_movie_feature.presentation.state
+package br.com.movieapp.movie_search_feature.presentation.state
 
 import androidx.paging.PagingData
 import br.com.movieapp.core.domain.model.Movie

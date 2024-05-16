@@ -1,8 +1,8 @@
 package br.com.movieapp.core.paging
 
 import br.com.movieapp.core.domain.model.Movie
-import br.com.movieapp.search_movie_feature.data.mapper.toMovieSearch
-import br.com.movieapp.search_movie_feature.domain.source.MovieSearchRemoteDataSource
+import br.com.movieapp.movie_search_feature.data.mapper.toMovieSearch
+import br.com.movieapp.movie_search_feature.domain.source.MovieSearchRemoteDataSource
 
 class MovieSearchPagingSource(
     private val query: String,

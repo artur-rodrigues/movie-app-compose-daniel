@@ -1,4 +1,4 @@
-package br.com.movieapp.search_movie_feature.presentation.components
+package br.com.movieapp.movie_search_feature.presentation.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
@@ -21,7 +21,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.movieapp.R
-import br.com.movieapp.search_movie_feature.presentation.MoviesSearchEvent
+import br.com.movieapp.movie_search_feature.presentation.MoviesSearchEvent
 import br.com.movieapp.ui.theme.white
 
 @Composable

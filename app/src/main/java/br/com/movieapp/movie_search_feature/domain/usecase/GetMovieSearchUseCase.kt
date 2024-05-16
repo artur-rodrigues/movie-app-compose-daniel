@@ -1,9 +1,9 @@
-package br.com.movieapp.search_movie_feature.domain.usecase
+package br.com.movieapp.movie_search_feature.domain.usecase
 
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import br.com.movieapp.core.domain.model.Movie
-import br.com.movieapp.search_movie_feature.domain.repository.MovieSearchRepository
+import br.com.movieapp.movie_search_feature.domain.repository.MovieSearchRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
