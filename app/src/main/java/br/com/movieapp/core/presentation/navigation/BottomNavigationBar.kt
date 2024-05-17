@@ -11,6 +11,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import br.com.movieapp.ui.theme.black
@@ -60,6 +61,12 @@ fun RowScope.BottomNavigationBarItem(currentRoute: String?, destination: BottomN
             unselectedTextColor = yellow.copy(alpha = 0.5f)
         )
     )
+}
+
+@Composable
+fun currentRoute(navHostController: NavHostController): String? {
+    val navBackStackEntry by navHostController.currentBackStackEntryAsState()
+    return navBackStackEntry?.destination?.route
 }
 
 @Preview

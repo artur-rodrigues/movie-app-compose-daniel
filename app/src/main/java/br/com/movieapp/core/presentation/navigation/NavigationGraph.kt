@@ -30,7 +30,7 @@ fun NavigationGraph(navController: NavHostController, paddingValues: PaddingValu
         composable(BottomNavItem.MoviePopular.route) {
             hiltViewModel<MoviePopularViewModel>().run {
                 MoviePopularScreen(uiState) {
-                    navController.navigate(BottomNavItem.MovieDetail.passMovieId(it))
+                    navController.navigate(DetailScreenNav.DetailScreen.passMovieId(it))
                 }
             }
         }
@@ -38,13 +38,13 @@ fun NavigationGraph(navController: NavHostController, paddingValues: PaddingValu
         composable(BottomNavItem.MovieSearch.route) {
             hiltViewModel<MovieSearchViewModel>().run {
                 MovieSearchScreen(uiState, ::event, ::fetch) {
-                    navController.navigate(BottomNavItem.MovieDetail.passMovieId(it))
+                    navController.navigate(DetailScreenNav.DetailScreen.passMovieId(it))
                 }
             }
         }
 
         composable(
-            route = BottomNavItem.MovieDetail.route,
+            route = DetailScreenNav.DetailScreen.route,
             arguments = listOf(
                 navArgument(
                     name = Constants.MOVIE_DETAIL_ARGUMENT_KEY,
@@ -54,7 +54,7 @@ fun NavigationGraph(navController: NavHostController, paddingValues: PaddingValu
                     }
                 )
             )
-        ) {entry ->
+        ) {
             hiltViewModel<MovieDetailViewModel>().run {
                 MovieDetailScreen(uiState, ::onAddFavorite)
             }
@@ -63,7 +63,7 @@ fun NavigationGraph(navController: NavHostController, paddingValues: PaddingValu
         composable(BottomNavItem.MovieFavorite.route) {
             hiltViewModel<MovieFavoriteViewModel>().run {
                 MovieFavoriteScreen(uiState) {
-                    navController.navigate(BottomNavItem.MovieDetail.passMovieId(it))
+                    navController.navigate(DetailScreenNav.DetailScreen.passMovieId(it))
                 }
             }
         }
