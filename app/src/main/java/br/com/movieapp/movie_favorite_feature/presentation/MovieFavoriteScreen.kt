@@ -7,14 +7,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.movieapp.R
+import br.com.movieapp.core.domain.model.Movie
 import br.com.movieapp.core.presentation.components.commom.MovieAppBar
 import br.com.movieapp.movie_favorite_feature.presentation.components.MovieFavoriteContent
-import br.com.movieapp.movie_favorite_feature.presentation.state.MovieFavoriteState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MovieFavoriteScreen(
-    uiState: MovieFavoriteState,
+    movies: List<Movie>,
     modifier: Modifier = Modifier,
     navigateToDetailMovie: (Int) -> Unit
 ) {
@@ -24,7 +24,7 @@ fun MovieFavoriteScreen(
             MovieAppBar(stringId = R.string.favorite_movies)
         }
     ) {
-        MovieFavoriteContent(paddingValues = it, movies = uiState.movies) { movieId ->
+        MovieFavoriteContent(paddingValues = it, movies = movies) { movieId ->
             navigateToDetailMovie(movieId)
         }
     }
@@ -33,5 +33,5 @@ fun MovieFavoriteScreen(
 @Preview
 @Composable
 private fun MovieFavoriteScreenPreview() {
-    MovieFavoriteScreen(uiState = MovieFavoriteState()) {}
+    MovieFavoriteScreen(movies = emptyList()) {}
 }

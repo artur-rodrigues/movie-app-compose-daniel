@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -62,7 +63,9 @@ fun NavigationGraph(navController: NavHostController, paddingValues: PaddingValu
 
         composable(BottomNavItem.MovieFavorite.route) {
             hiltViewModel<MovieFavoriteViewModel>().run {
-                MovieFavoriteScreen(uiState) {
+                val movies = uiState.movies.collectAsStateWithLifecycle(initialValue = emptyList())
+
+                MovieFavoriteScreen(movies.value) {
                     navController.navigate(DetailScreenNav.DetailScreen.passMovieId(it))
                 }
             }
