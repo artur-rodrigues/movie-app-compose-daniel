@@ -16,12 +16,12 @@ fun createMovie(poster: Poster) = when(poster) {
         id = 1,
         title = "Avengers",
         voteAverage = 7.1,
-        imageUrl = "URL"
+        imageUrl = "https://image.tmdb.org/t/p/w1280poster"
     )
     Poster.JohnWick -> Movie(
         id = 2,
-        title = "JohnWick",
+        title = "John Wick",
         voteAverage = 7.2,
-        imageUrl = "URL"
+        imageUrl = "https://image.tmdb.org/t/p/w1280poster"
     )
 }

@@ -28,7 +28,6 @@ abstract class CommonPagingSource<MODEL : Any> : PagingSource<Int, MODEL>() {
                 nextKey = if(models.isEmpty()) null else pageNumber + 1
             )
         } catch (e: Exception) {
-            e.printStackTrace()
             return LoadResult.Error(e)
         }
     }
