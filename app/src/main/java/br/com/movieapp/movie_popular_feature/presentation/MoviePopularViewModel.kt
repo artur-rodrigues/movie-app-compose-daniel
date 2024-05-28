@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import br.com.movieapp.movie_popular_feature.domain.usecase.GetPopularMoviesUseCase
 import br.com.movieapp.movie_popular_feature.presentation.state.MoviePopularState
@@ -20,8 +21,12 @@ class MoviePopularViewModel @Inject constructor(
         private set
 
     init {
-        val movies = getPopularMoviesUseCase.invoke()
+        val movies = getPopularMoviesUseCase.invoke(pagingConfig())
             .cachedIn(viewModelScope)
         uiState = uiState.copy(movies = movies)
+    }
+
+    private fun pagingConfig(): PagingConfig {
+        return PagingConfig(pageSize = 20, initialLoadSize = 20)
     }
 }
