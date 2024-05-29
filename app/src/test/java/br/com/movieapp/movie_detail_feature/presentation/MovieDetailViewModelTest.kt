@@ -2,6 +2,7 @@ package br.com.movieapp.movie_detail_feature.presentation
 
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.SavedStateHandle
+import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import br.com.movieapp.TestDispatcherRule
 import br.com.movieapp.core.domain.model.Movie
@@ -66,12 +67,12 @@ class MovieDetailViewModelTest {
             }
         )
     }
-    
+
     @Test
     fun `must notify uiState with success when get movies similar and movie details returns success`() = runTest {
         // Given
-        whenever(useCase.invoke(any())).thenReturn(
-            flowOf(ResultData.Success(flowOf(fakePagingDataMovies) to movieDetails))
+        whenever(useCase.invoke(any(), any())).thenReturn(
+            ResultData.Success(flowOf(fakePagingDataMovies) to movieDetails)
         )
 
         whenever(isFavoriteUseCase.invoke(any())).thenReturn(
@@ -79,12 +80,13 @@ class MovieDetailViewModelTest {
         )
 
         val argumentCaptor = argumentCaptor<Int>()
-        
+        val pageConfigCaptor = argumentCaptor<PagingConfig>()
+
         // When
         viewModel.uiState.isLoading
-        
+
         // Then
-        verify(useCase).invoke(argumentCaptor.capture())
+        verify(useCase).invoke(argumentCaptor.capture(), pageConfigCaptor.capture())
         assertThat(movieDetails.id).isEqualTo(argumentCaptor.firstValue)
 
         val movieDetails = viewModel.uiState.movieDetails
@@ -96,7 +98,8 @@ class MovieDetailViewModelTest {
     @Test(expected = Exception::class)
     fun `must notify uiState with Failure when get movies details and returns exception`() = runTest {
         // Given
-        whenever(useCase.invoke(any())).thenThrow(
+        val pageConfigCaptor = argumentCaptor<PagingConfig>()
+        whenever(useCase.invoke(any(), any())).thenThrow(
             Exception("Um erro ocorreu!")
         )
 
@@ -110,7 +113,7 @@ class MovieDetailViewModelTest {
         val error = viewModel.uiState.error
 
         // Then
-        verify(useCase).invoke(argumentCaptor.capture())
+        verify(useCase).invoke(argumentCaptor.capture(), pageConfigCaptor.capture())
         assertThat(error).isEqualTo("Um erro ocorreu!")
         assertThat(movieDetails).isNull()
     }
@@ -118,8 +121,8 @@ class MovieDetailViewModelTest {
     @Test
     fun `must call delete favorite and notify of uiState with filled favorite icon when current icon is checked`() = runTest {
         // Given
-        whenever(useCase.invoke(any())).thenReturn(
-            flowOf(ResultData.Success(flowOf(fakePagingDataMovies) to movieDetails))
+        whenever(useCase.invoke(any(), any())).thenReturn(
+            ResultData.Success(flowOf(fakePagingDataMovies) to movieDetails)
         )
 
         whenever(deleteMovieFavoriteUseCase.invoke(any())).thenReturn(
@@ -147,8 +150,8 @@ class MovieDetailViewModelTest {
     @Test
     fun `must notify uiState with filled favorite icon when current icons is unchecked`() = runTest {
         // Given
-        whenever(useCase.invoke(any())).thenReturn(
-            flowOf(ResultData.Success(flowOf(fakePagingDataMovies) to movieDetails))
+        whenever(useCase.invoke(any(), any())).thenReturn(
+            ResultData.Success(flowOf(fakePagingDataMovies) to movieDetails)
         )
 
         whenever(addMovieFavoriteUseCase.invoke(any())).thenReturn(
@@ -176,8 +179,8 @@ class MovieDetailViewModelTest {
     @Test
     fun `must notify uiState with bookmark icon filled in if bookmark check returns true`() = runTest {
         // Given
-        whenever(useCase.invoke(any())).thenReturn(
-            flowOf(ResultData.Success(flowOf(fakePagingDataMovies) to movieDetails))
+        whenever(useCase.invoke(any(), any())).thenReturn(
+            ResultData.Success(flowOf(fakePagingDataMovies) to movieDetails)
         )
 
         whenever(isFavoriteUseCase.invoke(any())).thenReturn(
@@ -198,8 +201,8 @@ class MovieDetailViewModelTest {
     @Test
     fun `must notify uiState with bookmark icon filled in if bookmark check returns false`() = runTest {
         // Given
-        whenever(useCase.invoke(any())).thenReturn(
-            flowOf(ResultData.Success(flowOf(fakePagingDataMovies) to movieDetails))
+        whenever(useCase.invoke(any(), any())).thenReturn(
+            ResultData.Success(flowOf(fakePagingDataMovies) to movieDetails)
         )
 
         whenever(isFavoriteUseCase.invoke(any())).thenReturn(

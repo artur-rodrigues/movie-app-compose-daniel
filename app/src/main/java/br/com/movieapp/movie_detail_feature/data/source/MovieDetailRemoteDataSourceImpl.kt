@@ -33,6 +33,6 @@ class MovieDetailRemoteDataSourceImpl @Inject constructor(
     }
 
     override fun getSimilarMoviesPagingSource(movieId: Int): MovieSimilarPagingSource {
-        return MovieSimilarPagingSource(this, movieId)
+        return MovieSimilarPagingSource(movieId,this)
     }
 }

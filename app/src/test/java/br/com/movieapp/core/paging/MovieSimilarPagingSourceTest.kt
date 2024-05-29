@@ -30,7 +30,7 @@ class MovieSimilarPagingSourceTest {
     private val movieSimilarPaging = MoviePagingFactory.create()
 
     private val moviePagingSource by lazy {
-        MovieSimilarPagingSource(remoteDataSource, 1)
+        MovieSimilarPagingSource(1, remoteDataSource)
     }
 
     @Test

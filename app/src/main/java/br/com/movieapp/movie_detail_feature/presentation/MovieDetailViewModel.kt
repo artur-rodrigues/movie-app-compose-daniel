@@ -7,6 +7,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingConfig
 import br.com.movieapp.core.domain.model.Movie
 import br.com.movieapp.core.util.Constants
 import br.com.movieapp.core.util.ResultData
@@ -118,28 +119,31 @@ class MovieDetailViewModel @Inject constructor(
 
     private fun getDetails(movieId: Int) {
         viewModelScope.launch {
-            useCase.invoke(movieId).collect {
-                when(it) {
-                    is ResultData.Failure -> {
-                        uiState = uiState.copy(
-                            isLoading = false,
-                            error = it.e?.message.toString()
-                        )
-                    }
+            when(val resultData = useCase.invoke(movieId, pagingConfig())) {
+                is ResultData.Failure -> {
+                    uiState = uiState.copy(
+                        isLoading = false,
+                        error = resultData.e?.message.toString()
+                    )
+                }
 
-                    ResultData.Loading -> {
-                        uiState = uiState.copy(isLoading = true)
-                    }
+                ResultData.Loading -> {
+                    uiState = uiState.copy(isLoading = true)
+                }
 
-                    is ResultData.Success -> {
-                        uiState = uiState.copy(
-                            isLoading = false,
-                            movieDetails = it.data?.second,
-                            result = it.data?.first ?: emptyFlow()
-                        )
-                    }
+                is ResultData.Success -> {
+                    uiState = uiState.copy(
+                        isLoading = false,
+                        movieDetails = resultData.data?.second,
+                        result = resultData.data?.first ?: emptyFlow()
+                    )
                 }
             }
+
         }
+    }
+
+    private fun pagingConfig(): PagingConfig {
+        return PagingConfig(pageSize = 20, initialLoadSize = 20)
     }
 }

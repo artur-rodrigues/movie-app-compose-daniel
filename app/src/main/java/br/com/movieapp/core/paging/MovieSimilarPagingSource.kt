@@ -5,8 +5,8 @@ import br.com.movieapp.movie_detail_feature.domain.source.MovieDetailRemoteDataS
 import br.com.movieapp.movie_popular_feature.data.mapper.toMovie
 
 class MovieSimilarPagingSource(
-    private val remoteDetailDataSource: MovieDetailRemoteDataSource,
-    private val movieId: Int
+    private val movieId: Int,
+    private val remoteDetailDataSource: MovieDetailRemoteDataSource
 ) : CommonPagingSource<Movie>() {
 
     override suspend fun executeCall(pageNumber: Int): List<Movie> {
